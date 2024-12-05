@@ -2,7 +2,7 @@ import requests, bs4
 from bs4      import BeautifulSoup
 
 def bfmtv_search(name,pren):
-    r = requests.get("https://dirigeants.bfmtv.com/recherche/q/{}5+{}6".format(name,pren))
+    r = requests.get("https://dirigeants.bfmtv.com/recherche/q/{}5+{}6".format(name,pren), timeout=60)
     page = r.content
     features = "html.parser"
     soup = BeautifulSoup(page, features)
@@ -14,7 +14,7 @@ def bfmtv_search(name,pren):
         link = soup.find('a',{'class':'nom'})
         link = str(link).replace('<a class="nom" href="/','').split('"')[0]
         link = ("https:/"+link)
-        r = requests.get(link)
+        r = requests.get(link, timeout=60)
         page = r.content
         features = "html.parser"
         soup = BeautifulSoup(page, features)

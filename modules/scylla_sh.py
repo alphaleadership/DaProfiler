@@ -2,7 +2,7 @@ import requests
 
 def scylla_search(email):
     try:
-        r = requests.get('https://scylla.so/search?q=email:{}'.format(email))
+        r = requests.get('https://scylla.so/search?q=email:{}'.format(email), timeout=60)
         if r.status_code == 500 or r.status_code == 502:
             return None
         try:

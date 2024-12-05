@@ -12,7 +12,7 @@ def getInstagramEmailFromBio(username):
     
     url = "https://smihub.com/v/{}".format(username)
 
-    r = requests.get(url=url)
+    r = requests.get(url=url, timeout=60)
     page = r.content.decode()
     features = "html.parser"
     soup = BeautifulSoup(page,features)
@@ -250,7 +250,7 @@ def getInstagramEmailFromBio(username):
 def ig_search(name,pren):
     url = "https://smihub.com/search?query={}+{}".format(pren,name)
 
-    r = requests.get(url=url)
+    r = requests.get(url=url, timeout=60)
     page = r.content.decode()
     features = "html.parser"
     soup = BeautifulSoup(page,features)

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 def facebook_search(name,pren):
     url = "https://fr-fr.facebook.com/public/{}-{}".format(pren,name)
-    page = requests.get(url).content.decode('utf-8')
+    page = requests.get(url, timeout=60).content.decode('utf-8')
     nameAccount = re.findall("width=\"72\" height=\"72\" alt=\"([a-zA-Z0-9_ é , ]+)\" />", page)
     total_accounts = []
     for i in nameAccount:
