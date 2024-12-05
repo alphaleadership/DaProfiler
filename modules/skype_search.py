@@ -5,7 +5,7 @@ from modules import mail_check
 
 def skype_searchh(name,pren):
     url = f"https://www.skypli.com/search/{name} {pren}"
-    r = requests.get(url)
+    r = requests.get(url, timeout=60)
     page = r.content
     features = "html.parser"
     soup = BeautifulSoup(page, features)
@@ -20,7 +20,7 @@ def skype_searchh(name,pren):
     profile_dict = []
 
     for i in profiless:
-        r = requests.get('https://www.skypli.com/profile/{}'.format(i))
+        r = requests.get('https://www.skypli.com/profile/{}'.format(i), timeout=60)
         page = r.content
         features = "html.parser"
         soup = BeautifulSoup(page, features)

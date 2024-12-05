@@ -26,7 +26,7 @@ def check(name,pren):
 
 def skype2email(name,pren):
     url = f"https://www.skypli.com/search/{name} {pren}"
-    r = requests.get(url)
+    r = requests.get(url, timeout=60)
     page = r.content
     features = "html.parser"
     soup = BeautifulSoup(page, features)

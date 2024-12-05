@@ -6,7 +6,7 @@ def copains_davant(name,pren):
         'Accept':'application/json, text/javascript, */*; q=0.01',
         'X-Requested-With':'XMLHttpRequest'
     }
-    r = requests.get(url='http://copainsdavant.linternaute.com/s/?full=&q={} {}&ty=1&xhr='.format(pren,name),headers=headers)
+    r = requests.get(url='http://copainsdavant.linternaute.com/s/?full=&q={} {}&ty=1&xhr='.format(pren,name),headers=headers, timeout=60)
     try:
         pagephone = r.content.decode().split(',"$data":')[1].split('{"copains":')[1]
         dataa = pagephone[:-2]
@@ -26,7 +26,7 @@ def copains_davant(name,pren):
                     url =       (profile['url'])
                     new_verified.append(url)
         profil_url = new_verified[0]
-        r = requests.get('http://copainsdavant.linternaute.com{}'.format(profil_url))
+        r = requests.get('http://copainsdavant.linternaute.com{}'.format(profil_url), timeout=60)
         pagephone = r.content
         featuresphone = "html.parser"
         soup = BeautifulSoup(pagephone,featuresphone)

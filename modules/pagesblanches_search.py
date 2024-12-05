@@ -3,7 +3,7 @@ from colorama import Fore
 from bs4      import BeautifulSoup
 
 def adresse_search(name,pren):
-    r = requests.get('https://www.pagesjaunes.fr/pagesblanches/recherche?quoiqui={} {}'.format(name,pren))
+    r = requests.get('https://www.pagesjaunes.fr/pagesblanches/recherche?quoiqui={} {}'.format(name,pren), timeout=60)
     page = r.content
     features = "html.parser"
     soup = BeautifulSoup(page, features)
@@ -19,7 +19,7 @@ def adresse_search(name,pren):
 
         if name.lower() in name_full.lower():
             try:
-                r = requests.get('https://www.infos-numero.com/ajax/NumberInfo?num={}'.format(phon_full))
+                r = requests.get('https://www.infos-numero.com/ajax/NumberInfo?num={}'.format(phon_full), timeout=60)
                 data = r.json()
 
                 type_tel = (data['info']['type'])

@@ -3,7 +3,7 @@
 import requests
 
 def verify(mail):
-    response = requests.get("https://isitarealemail.com/api/email/validate?email={}".format(mail),params = {'Authorization':'fa86a707-750e-485c-8ec3-86eddd7ec4d0'},headers = {'Authorization': "Bearer fa86a707-750e-485c-8ec3-86eddd7ec4d0"})
+    response = requests.get("https://isitarealemail.com/api/email/validate?email={}".format(mail),params = {'Authorization':'fa86a707-750e-485c-8ec3-86eddd7ec4d0'},headers = {'Authorization': "Bearer fa86a707-750e-485c-8ec3-86eddd7ec4d0"}, timeout=60)
     try:
         data = response.json()
         status = data['status']
